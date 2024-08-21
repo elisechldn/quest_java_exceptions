@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class OddSum {
+public class OddSum extends Exception {
 
     public static void main(String[] args) {
         run(args, false);
@@ -16,17 +16,23 @@ public class OddSum {
                 System.out.print(" " + v);
             System.out.println();
         }
+
         for (int i = 0; i < args.length; i++) {
-            listInt.add(Integer.parseInt(args[i]));
+            try {
+                listInt.add(Integer.parseInt(args[i]));
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Erreur : '" + args[i] + "' n'est pas un entier valide.");
+                return -1;
+            }
         }
 
         res = sum(listInt);
         if (test) {
             return res;
         }
-
-        System.out.println("Sum of odd elements : " + res);
-        System.out.println("END!");
+            System.out.println("Sum of odd elements : " + res);
+            System.out.println("END!");
 
         return 0;
     }
